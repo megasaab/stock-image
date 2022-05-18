@@ -23,12 +23,11 @@ a:hover {
     box-sizing: border-box;
 }
 
+.main-container {
+    background: rgba(0, 0, 0, 1);
+}
 
 /* Header component */
-
-.main-container {
-    background-color: #000000;
-}
 
 .header-menu {
     color: white;
@@ -59,3 +58,32 @@ a:hover {
 }
 
 /* Header component  end*/
+
+/* Search page */
+.input__wrapper hr {
+     background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 50%, #000000 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+.input__wrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 1px;
+    width: 800px;
+    font-size: 40px;
+}
+
+.input__wrapper input::placeholder {
+    color: white;
+    opacity: 1;
+    text-align:center;
+    font-size: 60px;
+    line-height: 45px;
+}
+
+.input__wrapper input:focus ~ label,
+.input__wrapper input:valid ~ label {
+    display: none;
+}
+/* Search page end*/

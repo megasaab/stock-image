@@ -1,4 +1,5 @@
 import {types} from "./api/mock";
+import Gallery from "../components/Gallery";
 
 function Search() {
     const typeList = types.trim().split(' ');
@@ -16,19 +17,25 @@ function Search() {
     };
 
     return (
-        <div className="main-container">
-            <div className="input__wrapper text-center p-5">
-                <input type="text" placeholder="Поиск"/>
-                <hr/>
-                <div className="search-type__wrapper" id="scroll-type" onWheel={onWheel}>
-                    {typeList.map(type =>
-                            <span className="me-1 search-type" key={type}>
-                        {type}
-                    </span>
-                    )}
+        <>
+            <div className="main-container">
+                <div className="input__wrapper text-center p-5">
+                    <input type="text" placeholder="Поиск"/>
+                    <hr/>
+                    <div className="search-type__wrapper" id="scroll-type" onWheel={onWheel}>
+                        {typeList.map((type, index) => {
+                                return (
+                                    <span className="me-1 search-type" key={index}>
+                                     {type}
+                                </span>
+                                )
+                            }
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+            <Gallery/>
+        </>
     )
 }
 

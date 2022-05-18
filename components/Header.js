@@ -24,7 +24,7 @@ function Header() {
                             </li>
                             <li className="me-3"><i className="fa-solid fa-clock-rotate-left me-3"/>
                                 <span>
-                                    <Link href={'/search-history'}>
+                                    <Link href={'/history-search'}>
                                     История поиска
                                  </Link>
                                 </span>

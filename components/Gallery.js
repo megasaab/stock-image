@@ -14,52 +14,31 @@ import rectangle from '../public/static/images/rectangle.svg';
 import rectangleMobile from '../public/static/images/rectangle-mobile.svg';
 
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import getPhotos from "../pages/api/api";
 
 function Gallery() {
-    let data = [
-        {
-            id: 1,
-            imgSrc: Img1
-        },
-        {
-            id: 2,
-            imgSrc: Img2
-        },
-        {
-            id: 3,
-            imgSrc: Img3
-        },
-        {
-            id: 4,
-            imgSrc: Img4
-        },
-        {
-            id: 5,
-            imgSrc: Img5
-        },
-        {
-            id: 6,
-            imgSrc: Img6
-        },
-        {
-            id: 7,
-            imgSrc: Img7
-        }
-    ]
+
+    const [photos, setPhotos] = useState([]);
+    const [page, setPage] = useState(1);
 
     const [model, setModel] = useState(false);
-    const [tempImgSrc, setTempImgSrc] = useState({});
+    const [tempImgSrc, setTempImgSrc] = useState('');
 
     const getImg = (src) => {
         setTempImgSrc(src);
         setModel(true);
     }
 
+
+    useEffect(() => {
+        getPhotos(page).then((data) => setPhotos(data));
+    }, [page]);
+
     return (
         <div className="gallery__wrapper">
             <div className={model ? 'model open' : 'model'}>
-                <img src={tempImgSrc.src}  onClick={() => setModel(false)}/>
+                <img src={tempImgSrc} onClick={() => setModel(false)}/>
             </div>
 
             <div className="grid-icons">
@@ -85,15 +64,15 @@ function Gallery() {
             </div>
 
             <div className="gallery mt-5">
-                {data.map((item, index) => {
+                {photos.map((item) => {
                     return (
-                        <div className="pics" key={index}>
-                            <Image src={item.imgSrc} style={{width: '100%', borderRadius: '8px'}}/>
+                        <div className="pics" key={item?.id}>
+                            <img src={item.urls?.regular} style={{width: '100%', borderRadius: '8px'}}/>
                             <div className="gallery-overlay d-flex justify-content-between align-items-center">
-                                <div className="me-5">
+                                <div className="me-5" onClick={() => setPage(page + 1)}>
                                     <Image src={favoriteIco}/>
                                 </div>
-                                <div className="me-5" onClick={() => getImg(item.imgSrc)}>
+                                <div className="me-5" onClick={() => getImg(item.urls?.regular)}>
                                     <Image src={maximaizeIco}/>
                                 </div>
                                 <div>

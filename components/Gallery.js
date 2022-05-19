@@ -1,10 +1,13 @@
-import Img1 from '../public/static/images/Img1.jpg'
-import Img2 from '../public/static/images/Img2.jpg'
-import Img3 from '../public/static/images/Img3.jpg'
-import Img4 from '../public/static/images/Img4.jpg'
-import Img5 from '../public/static/images/Img5.jpg'
-import Img6 from '../public/static/images/Img6.jpg'
-import Img7 from '../public/static/images/Img7.jpg'
+import Img1 from '../public/static/images/Img1.jpg';
+import Img2 from '../public/static/images/Img2.jpg';
+import Img3 from '../public/static/images/Img3.jpg';
+import Img4 from '../public/static/images/Img4.jpg';
+import Img5 from '../public/static/images/Img5.jpg';
+import Img6 from '../public/static/images/Img6.jpg';
+import Img7 from '../public/static/images/Img7.jpg';
+import favoriteIco from '../public/static/images/favorite.png';
+import maximaizeIco from '../public/static/images/maximize.png';
+import downloadIco from  '../public/static/images/download.png';
 import Image from "next/image";
 import {useState} from "react";
 
@@ -58,13 +61,17 @@ function Gallery() {
             <div className="gallery mt-5">
                 {data.map((item, index) => {
                     return (
-                        <div className="pics" key={index} onClick={() => getImg(item.imgSrc)}>
+                        <div className="pics" key={index}>
                             <Image  src={item.imgSrc} style={{width: '100%', borderRadius: '8px'}}/>
-                            <div className="gallery-overlay">
-                                <div className="d-flex align-items-center justify-content-between overlay-icons">
-                                    <i className="fa-solid fa-2x fa-heart" />
-                                    <i className="fa-light fa-arrow-up-right-and-arrow-down-left-from-center" />
-                                    <i className="fa-solid fa-2x fa-down-to-bracket"/>
+                            <div className="gallery-overlay d-flex justify-content-between align-items-center">
+                                <div className="me-5">
+                                    <Image src={favoriteIco} />
+                                </div>
+                                <div className="me-5"  onClick={() => getImg(item.imgSrc)}>
+                                    <Image src={maximaizeIco} />
+                                </div>
+                                <div >
+                                    <Image src={downloadIco} />
                                 </div>
                             </div>
                         </div>

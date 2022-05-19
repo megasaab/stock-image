@@ -157,6 +157,7 @@ a:hover {
 
 .gallery .pics:hover {
     filter: opacity(0.8);
+    border-radius: 8px;
 }
 
 @media (max-width: 991px) {

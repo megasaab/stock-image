@@ -5,7 +5,7 @@ import Link from "next/link";
 function Header() {
     return (
         <>
-            <div className="p-3 main-container">
+            <div className="p-3 main-container fixed-top">
                 <div className="header__inner">
                     <div className="d-flex justify-content-around align-items-center">
                         <Image src={Logo} alt="logo-stock-image" width="28" height="20"/>

@@ -6,7 +6,6 @@ function Search() {
     typeList.filter(Boolean);
 
     const onWheel = e => {
-        e.preventDefault();
         const container = document.getElementById("scroll-type");
         const containerScrollPosition = document.getElementById("scroll-type").scrollLeft;
         container.scrollTo({
@@ -18,7 +17,7 @@ function Search() {
 
     return (
         <>
-            <div className="main-container">
+            <div className="main-container mt-5">
                 <div className="input__wrapper text-center p-5">
                     <input type="text" placeholder="Поиск"/>
                     <hr/>

@@ -7,7 +7,12 @@ import Img6 from '../public/static/images/Img6.jpg';
 import Img7 from '../public/static/images/Img7.jpg';
 import favoriteIco from '../public/static/images/favorite.png';
 import maximaizeIco from '../public/static/images/maximize.png';
-import downloadIco from  '../public/static/images/download.png';
+import downloadIco from '../public/static/images/download.png';
+import grid from '../public/static/images/grid.svg';
+import gridMobile from '../public/static/images/grid-mobile.svg';
+import rectangle from '../public/static/images/rectangle.svg';
+import rectangleMobile from '../public/static/images/rectangle-mobile.svg';
+
 import Image from "next/image";
 import {useState} from "react";
 
@@ -54,30 +59,53 @@ function Gallery() {
     return (
         <div className="gallery__wrapper">
             <div className={model ? 'model open' : 'model'}>
-                <img  src={tempImgSrc.src} />
-                <i className="fa fa-times fa-2x" onClick={() => setModel(false)} />
+                <img src={tempImgSrc.src}  onClick={() => setModel(false)}/>
+            </div>
+
+            <div className="grid-icons">
+                <div className="mt-5 d-flex justify-content-center">
+                    <div className="me-3">
+                        <Image src={rectangle}/>
+                    </div>
+                    <div>
+                        <Image src={grid}/>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid-icons-mobile">
+                <div className="d-flex mt-5 justify-content-center">
+                    <div className="me-3">
+                        <Image src={rectangleMobile}/>
+                    </div>
+                    <div>
+                        <Image src={gridMobile}/>
+                    </div>
+                </div>
             </div>
 
             <div className="gallery mt-5">
                 {data.map((item, index) => {
                     return (
                         <div className="pics" key={index}>
-                            <Image  src={item.imgSrc} style={{width: '100%', borderRadius: '8px'}}/>
+                            <Image src={item.imgSrc} style={{width: '100%', borderRadius: '8px'}}/>
                             <div className="gallery-overlay d-flex justify-content-between align-items-center">
                                 <div className="me-5">
-                                    <Image src={favoriteIco} />
+                                    <Image src={favoriteIco}/>
                                 </div>
-                                <div className="me-5"  onClick={() => getImg(item.imgSrc)}>
-                                    <Image src={maximaizeIco} />
+                                <div className="me-5" onClick={() => getImg(item.imgSrc)}>
+                                    <Image src={maximaizeIco}/>
                                 </div>
-                                <div >
-                                    <Image src={downloadIco} />
+                                <div>
+                                    <Image src={downloadIco}/>
                                 </div>
                             </div>
                         </div>
                     )
                 })}
             </div>
+            <button onClick={() => window.scrollTo(0, 0)} className="button-up d-flex ms-auto mb-1 p-3"><i
+                className="fa-solid fa-arrow-up "/></button>
         </div>
     )
 }

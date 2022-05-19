@@ -32,7 +32,7 @@ function Gallery() {
 
 
     useEffect(() => {
-        getPhotos(page).then((data) => setPhotos(data));
+        getPhotos(page).then((data) => setPhotos([...photos, ...data]));
     }, [page]);
 
     return (
@@ -83,7 +83,7 @@ function Gallery() {
                     )
                 })}
             </div>
-            <button onClick={() => window.scrollTo(0, 0)} className="button-up d-flex ms-auto mb-1 p-3"><i
+            <button onClick={() => window.scrollTo(0, 0)} className="button-up d-flex  mb-1 p-3 fixed-bottom fixed" style={{right: '0', left: '95%', width: "2.3%"}}><i
                 className="fa-solid fa-arrow-up "/></button>
         </div>
     )

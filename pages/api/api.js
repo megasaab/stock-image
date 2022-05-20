@@ -49,6 +49,21 @@ class ApiRequest {
             console.log(err)
         }
     }
+
+   async getTopicsPhoto(id) {
+        //TODO need set Store or something similar
+        let response;
+        try {
+            response = await axios.get(`${BASE_URL}/topics/${id}/photos?page=1&client_id=${API_KEY}`, {}, {
+            });
+            if (response.data) {
+                console.log(response.data)
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
 }
 
 export const apiRequest = new ApiRequest();

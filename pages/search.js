@@ -21,7 +21,8 @@ function Search() {
                     <div className="search-type__wrapper" id="scroll-type">
                         {topics.map(type => {
                                 return (
-                                    <span className="me-3 search-type" key={type?.id}>
+                                    <span className="me-3 search-type" key={type?.id}
+                                          onClick={() => apiRequest.getTopicsPhoto(type.id)}>
                                      {type?.title}
                                 </span>
                                 )

@@ -5,10 +5,10 @@ import grid from '../public/static/images/grid.svg';
 import gridMobile from '../public/static/images/grid-mobile.svg';
 import rectangle from '../public/static/images/rectangle.svg';
 import rectangleMobile from '../public/static/images/rectangle-mobile.svg';
-
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import {apiRequest} from "../pages/api/api";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 
 function Gallery() {
@@ -17,10 +17,15 @@ function Gallery() {
     const [page, setPage] = useState(1);
     const [model, setModel] = useState(false);
     const [tempImgSrc, setTempImgSrc] = useState('');
+    const [hasMore, setHasMore] = useState(true);
 
     const getImg = (src) => {
         setTempImgSrc(src);
         setModel(true);
+    }
+
+    const nextPage = () => {
+        setPage(page + 1);
     }
 
 
@@ -57,6 +62,13 @@ function Gallery() {
             </div>
 
             <div className="gallery mt-5">
+                <InfiniteScroll
+                    dataLength={photos.length}
+                    next={nextPage}
+                    hasMore={hasMore}
+                    loader={<h3> Loading...</h3>}
+                    endMessage={<h4>Nothing more to show</h4>}
+                >
                 {photos.map((item) => {
                     return (
                         <div className="pics" key={item?.id}>
@@ -75,8 +87,10 @@ function Gallery() {
                         </div>
                     )
                 })}
+                </InfiniteScroll>
             </div>
-            <button onClick={() => window.scrollTo(0, 0)} className="button-up d-flex  mb-1 p-3 fixed-bottom fixed" style={{right: '0', left: '95%', width: "2.3%"}}><i
+            <button onClick={() => window.scrollTo(0, 0)} className="button-up d-flex  mb-1 p-3 fixed-bottom fixed"
+                    style={{right: '0', left: '95%', width: "2.3%"}}><i
                 className="fa-solid fa-arrow-up "/></button>
         </div>
     )

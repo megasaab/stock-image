@@ -8,7 +8,8 @@ import rectangleMobile from '../public/static/images/rectangle-mobile.svg';
 
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import getPhotos from "../pages/api/api";
+import {apiRequest} from "../pages/api/api";
+
 
 function Gallery() {
 
@@ -24,7 +25,7 @@ function Gallery() {
 
 
     useEffect(() => {
-        getPhotos(page).then((data) => setPhotos([...photos, ...data]));
+        apiRequest.getPhotos(page).then((data) => setPhotos([...photos, ...data]));
     }, [page]);
 
     return (
@@ -61,7 +62,7 @@ function Gallery() {
                         <div className="pics" key={item?.id}>
                             <img src={item.urls?.regular} style={{width: '100%', borderRadius: '8px'}}/>
                             <div className="gallery-overlay d-flex justify-content-between align-items-center">
-                                <div className="me-5" onClick={() => setPage(page + 1)}>
+                                <div className="me-5" onClick={() => apiRequest.likePhoto(item?.id)}>
                                     <Image src={favoriteIco}/>
                                 </div>
                                 <div className="me-5" onClick={() => getImg(item.urls?.regular)}>

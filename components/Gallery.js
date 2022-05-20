@@ -1,10 +1,3 @@
-import Img1 from '../public/static/images/Img1.jpg';
-import Img2 from '../public/static/images/Img2.jpg';
-import Img3 from '../public/static/images/Img3.jpg';
-import Img4 from '../public/static/images/Img4.jpg';
-import Img5 from '../public/static/images/Img5.jpg';
-import Img6 from '../public/static/images/Img6.jpg';
-import Img7 from '../public/static/images/Img7.jpg';
 import favoriteIco from '../public/static/images/favorite.png';
 import maximaizeIco from '../public/static/images/maximize.png';
 import downloadIco from '../public/static/images/download.png';
@@ -21,7 +14,6 @@ function Gallery() {
 
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
-
     const [model, setModel] = useState(false);
     const [tempImgSrc, setTempImgSrc] = useState('');
 

@@ -9,9 +9,11 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import {apiRequest} from "../pages/api/api";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {useSelector} from "react-redux";
 
 
 function Gallery() {
+    const search = useSelector((state) => state.main);
 
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
@@ -30,8 +32,8 @@ function Gallery() {
 
 
     useEffect(() => {
-        apiRequest.getPhotos(page).then((data) => setPhotos([...photos, ...data]));
-    }, [page]);
+        apiRequest.getPhotos(page, search).then((data) => setPhotos([...photos, ...data]));
+    }, [page, search]);
 
     return (
         <div className="gallery__wrapper">

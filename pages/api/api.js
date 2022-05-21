@@ -7,7 +7,7 @@ class ApiRequest {
     async getPhotos(page = 1, searchQuery) {
         let response;
         try {
-            if (searchQuery) {
+            if (searchQuery !== '@@INIT' && searchQuery) {
                 response = await axios.get(`${BASE_URL}/photos?query=${searchQuery}?page=${page}&client_id=${API_KEY}`);
             } else {
                 response = await axios.get(`${BASE_URL}/photos?page=${page}&client_id=${API_KEY}`);
